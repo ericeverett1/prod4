@@ -1,0 +1,776 @@
+<style>
+    /*Note, This is NEEDED to hide the old Container. Remove for Debugging Purposes*/
+    .main_content {
+    display: none;
+    }
+    #customerRegisterContainer {
+    background-color: transparent;
+    }
+    #customerRegisterContainerWrapper {
+    background-color: transparent;
+    }
+    .panel-heading {
+    font-size: 1.8em;
+    text-align: center;
+    }
+    #centerTextFlag {
+    display: none;
+    float: left;
+    }
+    @media (max-width: 992px) {
+    #centerTextFlag {
+    float: none;
+    }
+    }
+    #customerRegisterContainer #ctl00_ctl00_Content_Content_Button {
+    margin-bottom: 16px!important;
+    margin-top: 16px!important;
+    }
+    /*****Start Captcha Styling*****/
+    .divCaptcha {
+    width: 100%;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_ctl01 {
+    text-align: center;
+    margin: auto;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaAudioCodeUP {
+    height: auto;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaImageUP {
+    width: 100% !important;
+    height: 50% !important;
+    }
+    #securityAppContainer {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaAudioCodeUP {
+    background-image: none;
+    }
+    #lostPassContainer ul {
+    list-style-type: none;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaTextBox {
+    text-align: center!important;
+    margin: auto;
+    width: 85%;
+    }
+    @media (max-width: 992px) {
+    #captchaInputContainer {
+    margin-top: 60px;
+    }
+    }
+    /*Captcha Link Styles*/
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_SpamProtectorPanel a {
+    color: #6e9395 !important;
+    -webkit-transition: color 0.3s ease;
+    -kthtml-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+    font-weight: bold;
+    font-size: 1.1em;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_SpamProtectorPanel a:hover {
+    color: #f16521 !important;
+    }
+    /*****End Captcha Styling*****/
+</style>
+<div class="container-fluid container-wrapper-content" id="customerRegisterContainerWrapper">
+<div class="container container-content" id="customerRegisterContainer">
+<div id="centerTextFlag">&nbsp;</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h1>Customer Registration</h1>
+</div>
+<div class="panel-body" style="padding-top: 0px; padding-bottom: 0px;">
+<div id="errorsContainer"><span style="display: none;">remove space</span></div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<div>
+<p style="color: white;">* = Required Field</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="customerRegistrationContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="customerRegistrationTitleContainer">Account Information</div>
+</div>
+<div class="panel-body">
+<div id="customerRegistrationContentContainer">
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="emailTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="emailInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="confirmEmailTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="confirmEmailInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="passWordTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="passWordInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="confirmPasswordTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="confirmPasswordInputContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" id="challengeRow" style="display: none;">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="challengeContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="customerRegistrationTitleContainer">Challenge Question</div>
+</div>
+<div class="panel-body">
+<div id="challengeContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="challengeTextContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="challengeQuestionTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="challengeQuestionInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="challengeAnswerTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="challengeAnswerInputContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="billingAddressContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="billingAddressTitleContainer">Billing Address</div>
+</div>
+<div class="panel-body">
+<div id="billingAddressContentContainer">
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="residentialTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="residentialInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="firstNameTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="firstNameInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="middleInitialTextContainerBill">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="middleInitialInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="lastNameTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="lastNameInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="businessNameTextContainerBill">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="businessNameInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="addressLine1TextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="addressLine1InputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="addressLine2TextContainerBill">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="addressLine2InputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="cityTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="cityInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="stateTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="stateInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="zipTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="zipInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="countryTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="countryInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="phoneTextContainerBill">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="phoneInputContainerBill">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="billingAddressOptionContainerBill">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" id="new-ctl00_ctl00_Content_Content_pnlShip">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="shippingAddressContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="shippingAddressTitleContainer">Shipping Address</div>
+</div>
+<div class="panel-body">
+<div id="shippingAddressContentContainer">
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="residentialTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="residentialInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="firstNameTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="firstNameInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="middleInitialTextContainerShip">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="middleInitialInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="lastNameTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="lastNameInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="businessNameTextContainerShip">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="businessNameInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="addressLine1TextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="addressLine1InputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="addressLine2TextContainerShip">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="addressLine2InputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="cityTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="cityInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="stateTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="stateInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="zipTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="zipInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="countryTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="countryInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="phoneTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="phoneInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="emailTextContainerShip">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="emailInputContainerShip">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="additionalNoticeContainerShip">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="additionalInformationContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="additionalInformationTitleContainer">Additional Information</div>
+</div>
+<div class="panel-body">
+<div id="additionalInformationContentContainer">
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="studentNumberTextContainer">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="studentNumberInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="studentNumberExtraContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="goalTextContainer">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="goalInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="otherTextContainer">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="otherInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="gradYearTextContainer">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="gradYearInputContainer">&nbsp;</div>
+</div>
+</div>
+<div id="birthdayRow" style="display: none;">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="birthdayTextContainer">Please enter your birthday so that we may send you a greeting.</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="birthdayQuestionTextContainer">Birthday</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="birthdayQuestionInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">&nbsp;</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="birthdayQuestionInputContainer2">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" id="loyaltyRow" style="display: none;">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="loyaltyContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="customerRegistrationTitleContainer">Loyalty Rewards Program</div>
+</div>
+<div class="panel-body">
+<div id="loyaltyContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="loyaltyTextContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="loyaltyParticipateTextContainer">*Participate in Loyalty Rewards Program</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="loyaltyParticipateInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="loyaltyNumberTextContainer">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="loyaltyNumberInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="loyaltyNumberAdditionalContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="emailOptContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="emailOptTitleContainer">Email Opt In/Out</div>
+</div>
+<div class="panel-body">
+<div id="emailOptContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="recieveEmailsOptionContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="smsOptContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="smsOptTitleContainer">SMS Opt In/Out</div>
+</div>
+<div class="panel-body">
+<div id="smsOptContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="recieveSmsOptionContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="securityFormContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="securityFormTitleContainer">Security Form</div>
+</div>
+<div class="panel-body">
+<div id="securityFormContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="securityAppContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<div id="registerSubmitButtonContainer" style="text-align: right;">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        //Extra Responsiveness Help
+        $('.tblTop').css('width', '100%');
+        $('#tbl_left_cont_right').css('width', '100%');
+        $('.tblBottom').css('width', '100%');
+        //Append the Container
+        $('#content').parent().append($('#customerRegisterContainerWrapper'));
+        //Append The Important Things    
+        $('#emailTextContainer').append($('#ctl00_ctl00_Content_Content_lblforTxtEmail'));
+        $('#emailInputContainer').append($('#ctl00_ctl00_Content_Content_txtEmail').parent().children());
+        $('#confirmEmailTextContainer').append($('#ctl00_ctl00_Content_Content_lblforTxtConfEmail'));
+        $('#confirmEmailInputContainer').append($('#ctl00_ctl00_Content_Content_txtConfEmail').parent().children());
+        if ($('#ctl00_ctl00_Content_Content_ddlUserType').length > 0) {
+            $('<div class="row" id="customerTypeRow"></div>').insertAfter($('#confirmEmailTextContainer').parent().parent());
+            $('#customerTypeRow').append($('<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12"><div id="customerTypeTextContainer">*<label for="ctl00_ctl00_Content_Content_ddlUserType">Customer Type:</label></div>'));
+            $('#customerTypeRow').append($('#ctl00_ctl00_Content_Content_ddlUserType'));
+            $('#ctl00_ctl00_Content_Content_ddlUserType').wrap($('<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"></div>'));
+            $('#customerTypeRow').insertAfter($('#confirmEmailTextContainer').parent().parent());
+        }
+        $('#passWordTextContainer').append($('#ctl00_ctl00_Content_Content_lblforTxtPass'));
+        $('#passWordInputContainer').append($('#ctl00_ctl00_Content_Content_txtPass').parent().children());
+        $('#confirmPasswordTextContainer').append($('#ctl00_ctl00_Content_Content_lblforConfPass'));
+        $('#confirmPasswordInputContainer').append($('#ctl00_ctl00_Content_Content_txtConfPass').parent().children());
+        
+        
+        if ($('td[headers=Challenge]').length > 0) {
+            $('#challengeRow').show();
+            $('#challengeTextContainer').append($('td[headers=Challenge]').first().html());
+            $('#challengeQuestionTextContainer').append($('#ctl00_ctl00_Content_Content_lblForChallengeQuestion'));
+            $('#challengeQuestionInputContainer').append($('#ctl00_ctl00_Content_Content_ChallengeQuestion'));
+            $('#challengeAnswerTextContainer').append($('#ctl00_ctl00_Content_Content_lblForChallengeAnswer'));
+            $('#challengeAnswerInputContainer').append($('#ctl00_ctl00_Content_Content_ChallengeAnswer'));
+        }
+        
+        if($('#ctl00_ctl00_Content_Content_ddlBirthMonth').length > 0){
+            $('#birthdayRow').show();
+            $('#birthdayQuestionInputContainer').append($('#ctl00_ctl00_Content_Content_ddlBirthMonth'));
+            $('#birthdayQuestionInputContainer2').append($('#ctl00_ctl00_Content_Content_ddlBirthDay'));
+        }
+        
+        if($('#ctl00_ctl00_Content_Content_lblLoyaltyTitle').length > 0){
+            $('#loyaltyRow').show();
+            $('#loyaltyTextContainer').append($('#ctl00_ctl00_Content_Content_tblLoyalty a'));
+            $('#loyaltyParticipateInputContainer').append($('#ctl00_ctl00_Content_Content_rbtnLoyaltyYes').parent().children());
+            
+            $('#loyaltyNumberTextContainer').append($('#ctl00_ctl00_Content_Content_lblAcctTitle'));
+            $('#loyaltyNumberInputContainer').append($('#ctl00_ctl00_Content_Content_txtAcctNum'));
+            $('#loyaltyNumberAdditionalContainer').append($('#ctl00_ctl00_Content_Content_divAcctDesc'));
+        }
+                                                            
+        $('#residentialTextContainerBill').append('Residential Address?');
+        $('#residentialInputContainerBill').append($('#ctl00_ctl00_Content_Content_rbtnResidentialYes').parent().children());
+        $('#firstNameTextContainerBill').append($('#ctl00_ctl00_Content_Content_lblforTxtFName'));
+        $('#firstNameInputContainerBill').append($('#ctl00_ctl00_Content_Content_txtfname').parent().children());
+        $('#middleInitialTextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_txtmidi"]'));
+        $('#middleInitialInputContainerBill').append($('#ctl00_ctl00_Content_Content_txtmidi'));
+        $('#lastNameTextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_txtlname"]'));
+        $('#lastNameInputContainerBill').append($('#ctl00_ctl00_Content_Content_txtlname').parent().children());
+        $('#businessNameTextContainerBill').append('Business Name');
+        $('#businessNameInputContainerBill').append($('#ctl00_ctl00_Content_Content_txtBusinessName'));
+        $('#addressLine1TextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_txtAddress1"]'));
+        $('#addressLine1InputContainerBill').append($('#ctl00_ctl00_Content_Content_txtAddress1').parent().children());
+        $('#addressLine2TextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_txtAddress2"]'));
+        $('#addressLine2InputContainerBill').append($('#ctl00_ctl00_Content_Content_txtAddress2'));
+        $('#cityTextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_txtCity"]'));
+        $('#cityInputContainerBill').append($('#ctl00_ctl00_Content_Content_txtCity').parent().children());
+        $('#stateTextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_ddlBillState"]'));
+        $('#stateInputContainerBill').append($('#ctl00_ctl00_Content_Content_ddlBillState').parent().children());
+        $('#zipTextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_txtPostal"]'));
+        $('#zipInputContainerBill').append($('#ctl00_ctl00_Content_Content_txtPostal').parent().children());
+        $('#countryTextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_ddlBillCountry"]'));
+        $('#countryInputContainerBill').append($('#ctl00_ctl00_Content_Content_ddlBillCountry').parent().children());
+        $('#phoneTextContainerBill').append($('label[for="ctl00_ctl00_Content_Content_txtphone"]'));
+        $('#phoneInputContainerBill').append($('#ctl00_ctl00_Content_Content_txtphone').parent().children());
+        $('#billingAddressOptionContainerBill').append($('#ctl00_ctl00_Content_Content_chckShipSame').parent().parent());
+        $('#residentialTextContainerShip').append('Residential Address?');
+        $('#residentialInputContainerShip').append($('#ctl00_ctl00_Content_Content_rbtnShipResidentialYes').parent().children());
+        $('#firstNameTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtshipfname"]'));
+        $('#firstNameInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtshipfname').parent().children());
+        $('#middleInitialTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtmidi2"]'));
+        $('#middleInitialInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtmidi2').parent().children());
+        $('#lastNameTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtshiplname"]'));
+        $('#lastNameInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtshiplname').parent().children());
+        $('#businessNameTextContainerShip').append('Business Name:');
+        $('#businessNameInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtShipBusinessName').parent().children());
+        $('#addressLine1TextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtshipAddress1"]'));
+        $('#addressLine1InputContainerShip').append($('#ctl00_ctl00_Content_Content_txtshipAddress1').parent().children());
+        $('#addressLine2TextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtshipAddress2"]'));
+        $('#addressLine2InputContainerShip').append($('#ctl00_ctl00_Content_Content_txtshipAddress2').parent().children());
+        $('#cityTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtshipcity"]'));
+        $('#cityInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtshipcity'));
+        $('#stateTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_ddlShipState"]'));
+        $('#stateInputContainerShip').append($('#ctl00_ctl00_Content_Content_ddlShipState').parent().children());
+        $('#zipTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtshipPostal"]'));
+        $('#zipInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtshipPostal').parent().children());
+        $('#countryTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_ddlShipCountry"]'));
+        $('#countryInputContainerShip').append($('#ctl00_ctl00_Content_Content_ddlShipCountry').parent().children());
+        $('#phoneTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtshipphone"]'));
+        $('#phoneInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtshipphone').parent().children());
+        $('#emailTextContainerShip').append($('label[for="ctl00_ctl00_Content_Content_txtShipEmail"]'));
+        $('#emailInputContainerShip').append($('#ctl00_ctl00_Content_Content_txtShipEmail').parent().children());
+        $('#additionalNoticeContainerShip').append('Additional shipping addresses can be added later.');
+        $('#studentNumberTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtStudentNum"]'));
+        $('#studentNumberInputContainer').append($('#ctl00_ctl00_Content_Content_txtStudentNum').parent().children());
+        $('#studentNumberExtraContainer').append($('#ctl00_ctl00_Content_Content_lblIdText'));
+        $('#goalTextContainer').append($('label[for="ctl00_ctl00_Content_Content_ddlDegree"]'));
+        $('#goalInputContainer').append($('#ctl00_ctl00_Content_Content_ddlDegree').parent().children());
+        $('#otherTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtOther"]'));
+        $('#otherInputContainer').append($('#ctl00_ctl00_Content_Content_txtOther').parent().children());
+        $('#gradYearTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtGradYear"]'));
+        $('#gradYearInputContainer').append($('#ctl00_ctl00_Content_Content_txtGradYear').parent().children());
+        $('#recieveSmsOptionContainer').append($('#ctl00_ctl00_Content_Content_chkSchoolEmails'));
+        $('#recieveSmsOptionContainer').append($('label[for="ctl00_ctl00_Content_Content_chkSchoolEmails"]'));
+        
+        $('#ctl00_ctl00_Content_Content_chkListAttributes tr td').each(function (index, element) {
+            $('#recieveEmailsOptionContainer').append($('<br>'));
+            $('#recieveEmailsOptionContainer').append($(element).children());
+        });
+        $('#errorsContainer').append($('#ctl00_ctl00_Content_Content_ValidationSummary1'));
+        $('#registerSubmitButtonContainer').append($('#ctl00_ctl00_Content_Content_Button'));
+        $('#securityAppContainer').append($('.divCaptcha'));
+        //Fix Captcha Formatting
+        $('#ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaAudioCodeUP').html('<p><img src="/images/audio_but.png" alt="speakerIcon" />Get Audio Code</p>');
+        //Make Forms Look Pretty!
+        $('input[type="text"]').attr('style', ' ');
+        $('input[type="text"]').addClass('form-control');
+        $('input[type="password"]').attr('style', ' ');
+        $('input[type="password"]').addClass('form-control');
+        $('select').attr('style', ' ');
+        $('select').addClass('form-control');
+        $('div[id*=Text]').css('padding-top', '5px');
+        //Remove Extra "Space" in Inputs:
+        $('[id *= "Input"]').each(function () {
+            var $this = $(this);
+            $this.html($this.html().replace(/&nbsp;/g, ''));
+        });
+        //Attribute ID Swap to Skip Shipping if Same as Billing
+        $('#ctl00_ctl00_Content_Content_pnlShip').attr('id', 'old-ctl00_ctl00_Content_Content_pnlShip');
+        $('#new-ctl00_ctl00_Content_Content_pnlShip').attr('id', 'ctl00_ctl00_Content_Content_pnlShip');
+        var chkShip = document.getElementById('ctl00_ctl00_Content_Content_chckShipSame');
+        var pnlShip = document.getElementById('ctl00_ctl00_Content_Content_pnlShip');
+        if (chkShip) {
+            if (chkShip.checked) {
+                pnlShip.style.display = "none";
+            }
+            else {
+                pnlShip.style.display = "block";
+            }
+        }
+        //Check if Labels/
+        checkSize2();
+        //Runs a check Size for every Resize Event.
+        $(window).resize(checkSize2);
+        //Function to Check Screen Size.
+        function checkSize2() {
+            //Screen is Small
+            if ($("#centerTextFlag").css("float") == "none") {
+                $('[id *= "Text"]').css('text-align', 'center');
+                $('[id *= "Input"]').css('text-align', 'center');
+                $('[id *= "Input"] input').css('text-align', 'center');
+                $('[id *= "Input"]').parent().css('text-align', 'center');
+            }
+            //Screen is Big
+            else {
+                $('[id *= "Text"]').css('text-align', 'right');
+                $('[id *= "Input"]').css('text-align', 'left');
+                $('[id *= "Input"] input').css('text-align', 'left');
+                $('[id *= "Input"]').parent().css('text-align', 'left');
+            }
+        }
+        //CSS Stuffs
+        $('#ctl00_ctl00_Content_Content_Button').addClass('superButton');
+    });
+</script>
