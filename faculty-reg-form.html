@@ -1,0 +1,471 @@
+<style>
+    /*Note, This is NEEDED to hide the old Container. Remove for Debugging Purposes*/
+    .main_content {
+    display: none;
+    }
+    #centerTextFlag {
+    display: none;
+    float: left;
+    }
+    .panel-heading{
+    font-size: 1.8em;
+    text-align: center;
+    }
+    #facultyRegisterContainer{
+    background-color:transparent;
+    }
+    #facultyRegisterContainerWrapper, #ctl00_ctl00_div_content_sec{
+    background-color:transparent;
+    }
+    @media (max-width: 992px) {
+    #centerTextFlag {
+    float: none;
+    }
+    }
+    #facultyRegisterContainer #ctl00_ctl00_Content_Content_btnAdopt {
+    margin-bottom: 16px!important;
+    margin-top: 16px!important;
+    }
+    /*****Start Captcha Styling*****/
+    .divCaptcha {
+    width: 100%;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_ctl01 {
+    text-align: center;
+    margin: auto;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaAudioCodeUP {
+    height: auto;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaImageUP {
+    width: 100% !important;
+    height: 50% !important;
+    }
+    #securityAppContainer {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaAudioCodeUP {
+    background-image: none;
+    }
+    #lostPassContainer ul {
+    list-style-type: none;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaTextBox{
+    text-align: center!important;
+    margin:auto;
+    width:85%;
+    }
+    @media (max-width: 992px) {
+    #captchaInputContainer {
+    margin-top: 60px;
+    }
+    }
+    /*Captcha Link Styles*/
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_SpamProtectorPanel a{
+    color: #6e9395 !important;
+    -webkit-transition: color 0.3s ease;
+    -kthtml-transition: color 0.3s ease;
+    -moz-transition: color 0.3s ease;
+    -ms-transition: color 0.3s ease;
+    -o-transition: color 0.3s ease;
+    transition: color 0.3s ease;
+    font-weight: bold;
+    font-size: 1.1em;
+    }
+    #ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_SpamProtectorPanel a:hover {
+    color: #f16521 !important;
+    }
+    /*****End Captcha Styling*****/
+</style>
+<div class="container-fluid container-wrapper-content" id="facultyRegisterContainerWrapper">
+<div class="container container-content" id="facultyRegisterContainer">
+<div id="centerTextFlag">&nbsp;</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<h1>Faculty Registration</h1>
+</div>
+<div class="panel-body" style="padding-top: 0px; padding-bottom: 0px;">
+<div id="errorsContainer"><span style="display: none;">remove space</span></div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<div>
+<p style="color: white;">* = Required Field</p>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="facultyRegistrationContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="facultyRegistrationTitleContainer">Account Information</div>
+</div>
+<div class="panel-body">
+<div id="facultyRegistrationContentContainer">
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="firstNameTextContainerFaculty">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="firstNameInputContainerFaculty">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="middleInitialTextContainerFaculty">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="middleInitialInputContainerFacultyl">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="lastNameTextContainerFaculty">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="lastNameInputContainerFaculty">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="emailTextContainerFaculty">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="emailInputContainerFaculty">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="confirmEmailTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="confirmEmailInputContainerFaculty">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="passWordTextContainerFaculty">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="passWordInputContainerFaculty">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="confirmPasswordTextContainerFaculty">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="confirmPasswordInputContainerFaculty">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="facultyIdTextContainerFaculty">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="facultyIdInputContainerFaculty">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" id="challengeRow" style="display: none;">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="challengeContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="customerRegistrationTitleContainer">Challenge Question</div>
+</div>
+<div class="panel-body">
+<div id="challengeContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="challengeTextContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="challengeQuestionTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="challengeQuestionInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="challengeAnswerTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="challengeAnswerInputContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="departmentAccessContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="departmentAccessTitleContainer">Department Access</div>
+</div>
+<div class="panel-body">
+<div id="departmentAccessContentContainer">
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="departmentUsernameTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="departmentUsernameInputContainer">&nbsp;</div>
+</div>
+</div>
+
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="departmentPasswordTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="departmentPasswordInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="campusOfficePhoneTextContainer">*</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="campusOfficePhoneInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="campusOfficePhoneExtTextContainer">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="campusOfficePhoneExtInputContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row" id="loyaltyRow" style="display: none;">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="loyaltyContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="customerRegistrationTitleContainer">Loyalty Rewards Program</div>
+</div>
+<div class="panel-body">
+<div id="loyaltyContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="loyaltyTextContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="loyaltyParticipateTextContainer">*Participate in Loyalty Rewards Program</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="loyaltyParticipateInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+<div id="loyaltyNumberTextContainer">&nbsp;</div>
+</div>
+<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
+<div id="loyaltyNumberInputContainer">&nbsp;</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="loyaltyNumberAdditionalContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="emailOptionsContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="emailOptionsTitleContainer">Email Options</div>
+</div>
+<div class="panel-body">
+<div id="emailOptionsContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="recieveEmailsOptionContainer">&nbsp;</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="notifyBooksOptionContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12" id="securityFormContainer">
+<div class="panel panel-primary">
+<div class="panel-heading">
+<div id="securityFormTitleContainer">Security Form</div>
+</div>
+<div class="panel-body">
+<div id="securityFormContentContainer">
+<div class="row">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="securityAppContainer">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-lg-2 col-md-2 col-sm-0 col-xs-0 colOffset">&nbsp;</div>
+<div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+<div id="registerSubmitButtonContainer" style="text-align: right;">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+    $(document).ready(function () {
+        //Extra Responsiveness Help
+        $('.tblTop').css('width', '100%');
+        $('#tbl_left_cont_right').css('width', '100%');
+        $('.tblBottom').css('width', '100%');
+    
+        //Append the Container
+        $('#content').parent().append($('#facultyRegisterContainerWrapper'));
+        
+        //Append The Important Things  
+        $('#firstNameTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtfname"]'));
+        $('#firstNameInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtfname').parent().children());
+        $('#middleInitialTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtmidi"]'));
+        $('#middleInitialInputContainerFacultyl').append($('#ctl00_ctl00_Content_Content_txtmidi').parent().children());
+        $('#lastNameTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtlname"]'));
+        $('#lastNameInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtlname').parent().children());
+        $('#emailTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtEmail"]'));
+        $('#emailInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtEmail').parent().children());
+        $('#confirmEmailTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtEmailConfirm"]'));
+        $('#confirmEmailInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtEmailConfirm').parent().children());
+        if ($('#ctl00_ctl00_Content_Content_ddlUserType').length > 0) {
+            $('<div class="row" id="customerTypeRow"></div>').insertAfter($('#confirmEmailTextContainer').parent().parent());
+            $('#customerTypeRow').append($('<div class="col-lg-5 col-md-5 col-sm-12 col-xs-12"><div id="customerTypeTextContainer">*<label for="ctl00_ctl00_Content_Content_ddlUserType">Customer Type:</label></div>'));
+            $('#customerTypeRow').append($('#ctl00_ctl00_Content_Content_ddlUserType'));
+            $('#ctl00_ctl00_Content_Content_ddlUserType').wrap($('<div class="col-lg-7 col-md-7 col-sm-12 col-xs-12"></div>'));
+            $('#customerTypeRow').insertAfter($('#confirmEmailTextContainer').parent().parent());
+        }
+        
+        $('#passWordTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtPass"]'));
+        $('#passWordInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtPass').parent().children());
+        $('#confirmPasswordTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtPass1"]'));
+        $('#confirmPasswordInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtPass1').parent().children());
+         if ($('td[headers=Challenge]').length > 0) {
+            $('#challengeRow').show();
+            $('#challengeTextContainer').append($('td[headers=Challenge]').first().html());
+            $('#challengeQuestionTextContainer').append($('#ctl00_ctl00_Content_Content_lblForChallengeQuestion'));
+            $('#challengeQuestionInputContainer').append($('#ctl00_ctl00_Content_Content_ChallengeQuestion'));
+            $('#challengeAnswerTextContainer').append($('#ctl00_ctl00_Content_Content_lblForChallengeAnswer'));
+            $('#challengeAnswerInputContainer').append($('#ctl00_ctl00_Content_Content_ChallengeAnswer'));
+        }
+        
+      
+        
+        if($('#ctl00_ctl00_Content_Content_lblLoyaltyTitle').length > 0){
+            $('#loyaltyRow').show();
+            $('#loyaltyTextContainer').append($('#ctl00_ctl00_Content_Content_tblLoyalty a'));
+            $('#loyaltyParticipateInputContainer').append($('#ctl00_ctl00_Content_Content_rbtnLoyaltyYes').parent().children());
+            
+            $('#loyaltyNumberTextContainer').append($('#ctl00_ctl00_Content_Content_lblAcctTitle'));
+            $('#loyaltyNumberInputContainer').append($('#ctl00_ctl00_Content_Content_txtAcctNum'));
+            $('#loyaltyNumberAdditionalContainer').append($('#ctl00_ctl00_Content_Content_divAcctDesc'));
+        }
+        
+        $('#facultyIdTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtFacultyID"]'));
+        $('#facultyIdInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtFacultyID').parent().children());
+        $('#departmentUsernameTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtDptname"]'));
+        $('#departmentUsernameInputContainer').append($('#ctl00_ctl00_Content_Content_txtDptname').parent().children());
+        $('#departmentPasswordTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtDptPass"]'));
+        $('#departmentPasswordInputContainer').append($('#ctl00_ctl00_Content_Content_txtDptPass').parent().children());
+        $('#campusOfficePhoneTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtAdopterPhone"]'));
+        $('#campusOfficePhoneInputContainer').append($('#ctl00_ctl00_Content_Content_txtAdopterPhone').parent().children());
+        $('#campusOfficePhoneExtTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtPhoneEx"]'));
+        $('#campusOfficePhoneExtInputContainer').append($('#ctl00_ctl00_Content_Content_txtPhoneEx').parent().children());
+        $('#recieveEmailsOptionContainer').append($('#ctl00_ctl00_Content_Content_chkReceiveProviderEmails'));
+        $('#recieveEmailsOptionContainer').append($('label[for="ctl00_ctl00_Content_Content_chkReceiveProviderEmails"]'));
+        $('#notifyBooksOptionContainer').append($('#ctl00_ctl00_Content_Content_chkFacultyBuybackAlert'));
+        $('#notifyBooksOptionContainer').append($('label[for="ctl00_ctl00_Content_Content_chkFacultyBuybackAlert"]'));
+        $('#securityAppContainer').append($('.divCaptcha'));
+        $('#registerSubmitButtonContainer').append($('#ctl00_ctl00_Content_Content_btnAdopt'));
+                $('#ctl00_ctl00_Content_Content_chkListAttributes tr td').each(function (index, element) {
+            $('#recieveEmailsOptionContainer').append($('<br>'));
+            $('#recieveEmailsOptionContainer').append($(element).children());
+        });
+        $('#errorsContainer').append($('#ctl00_ctl00_Content_Content_VSAdopter'));
+        //Fix Captcha Formatting
+        $('#ctl00_ctl00_Content_Content_Captcha1_RadCaptcha1_CaptchaAudioCodeUP').html('<p><img src="/images/audio_but.png" alt="speakerIcon" />Get Audio Code</p>');
+        //Make Forms Look Pretty!
+        $('input[type="text"]').attr('style', ' ');
+        $('input[type="text"]').addClass('form-control');
+        $('input[type="password"]').attr('style', ' ');
+        $('input[type="password"]').addClass('form-control');
+        $('select').attr('style', ' ');
+        $('select').addClass('form-control');
+        $('div[id*=Text]').css('padding-top', '5px');
+        //Remove Extra "Space" in Inputs:
+        $('[id *= "Input"]').each(function () {
+            var $this = $(this);
+            $this.html($this.html().replace(/&nbsp;/g, ''));
+        });
+        //Check if Labels/
+        checkSize2();
+        //Runs a check Size for every Resize Event.
+        $(window).resize(checkSize2);
+        //Function to Check Screen Size.
+        function checkSize2() {
+            //Screen is Small
+            if ($("#centerTextFlag").css("float") == "none") {
+                $('[id *= "Text"]').css('text-align', 'center');
+                $('[id *= "Input"]').css('text-align', 'center');
+                $('[id *= "Input"] input').css('text-align', 'center');
+                $('[id *= "Input"]').parent().css('text-align', 'center');
+            }
+            //Screen is Big
+            else {
+                $('[id *= "Text"]').css('text-align', 'right');
+                $('[id *= "Input"]').css('text-align', 'left');
+                $('[id *= "Input"] input').css('text-align', 'left');
+                $('[id *= "Input"]').parent().css('text-align', 'left');
+            }
+        }
+        
+        //CSS Stuff
+        $('#ctl00_ctl00_Content_Content_btnAdopt').addClass('superButton');
+    });
+</script>
