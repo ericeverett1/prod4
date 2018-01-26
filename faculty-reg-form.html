@@ -228,13 +228,14 @@
 <div id="departmentAccessContentContainer">
 <div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-<div id="departmentUsernameTextContainer">*</div>
+<div id="departmentLabelTextContainer">*</div>
 </div>
 <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
 <div id="departmentUsernameInputContainer">&nbsp;</div>
 </div>
 </div>
 
+<!-- uncomment for department password during faculty adoption
 <div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 <div id="departmentPasswordTextContainer">*</div>
@@ -243,6 +244,8 @@
 <div id="departmentPasswordInputContainer">&nbsp;</div>
 </div>
 </div>
+-->
+
 <div class="row">
 <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
 <div id="campusOfficePhoneTextContainer">*</div>
@@ -409,10 +412,16 @@
         
         $('#facultyIdTextContainerFaculty').append($('label[for="ctl00_ctl00_Content_Content_txtFacultyID"]'));
         $('#facultyIdInputContainerFaculty').append($('#ctl00_ctl00_Content_Content_txtFacultyID').parent().children());
-        $('#departmentUsernameTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtDptname"]'));
-        $('#departmentUsernameInputContainer').append($('#ctl00_ctl00_Content_Content_txtDptname').parent().children());
-        $('#departmentPasswordTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtDptPass"]'));
-        $('#departmentPasswordInputContainer').append($('#ctl00_ctl00_Content_Content_txtDptPass').parent().children());
+        
+// change label[for="ctl00_ctl00_Content_Content_lblDepts"] to label[for="ctl00_ctl00_Content_Content_txtDptname for department passwords
+        $('#departmentLabelTextContainer').append($('#ctl00_ctl00_Content_Content_lblDepts'));
+        
+// ctl00_ctl00_Content_Content_lblDepts to ctl00_ctl00_Content_Content_txtDptname for department passwords
+        $('#departmentUsernameInputContainer').append($('#ctl00_ctl00_Content_Content_ddlDepts'));
+        
+// uncomment for department password during faculty adoption 
+//        $('#departmentPasswordTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtDptPass"]'));
+//        $('#departmentPasswordInputContainer').append($('#ctl00_ctl00_Content_Content_txtDptPass').parent().children());
         $('#campusOfficePhoneTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtAdopterPhone"]'));
         $('#campusOfficePhoneInputContainer').append($('#ctl00_ctl00_Content_Content_txtAdopterPhone').parent().children());
         $('#campusOfficePhoneExtTextContainer').append($('label[for="ctl00_ctl00_Content_Content_txtPhoneEx"]'));
