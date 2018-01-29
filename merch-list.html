@@ -297,7 +297,7 @@ $(document).ready(function(){
             
         //Append the Main Container!
         $('#content').parent().append($('#merchlistContainerWrapper'));
-        $('#errorsContainer').append($('.errors'));
+        $('#errorsContainer').append($('.errors').not('span[id$="lblLowInventory"]'));
         
         // Hide the existing merchandise display. //
         $("table[id*=dgMerch]").hide();
@@ -421,9 +421,9 @@ $(document).ready(function(){
             }
             
             
-            /**********************************/
-            /*********POPUP ITEM DISPLAY*******/
-            /**********************************/
+            /*****************************************/
+            /*********POPUP ITEM DISPLAY********/
+            /***************************************/
             
             /***ITEM POPUP CONTAINERS***/
             //Create Skeleton
@@ -483,6 +483,9 @@ $(document).ready(function(){
             
             //Add Name of Item to PopUp
             $('#popUpItem'+workingItem+'Name').html($('<a href="'+rawLink+'">'+rawTitle+'</a>'));
+            
+            //Add Name of Item to PopUp
+            $('#popUpItem'+workingItem+'Errors').html($('<a href="'+rawLink+'">'+rawTitle+'</a>'));
             
             /***ITEM POPUP DESCRIPTION LONG***/
             $('#popUpItem'+workingItem+'Description').html('<span class="popUpDescriptor">Description: </span>' + $(workingItemDescLong).html());
