@@ -1,0 +1,636 @@
+<!-- Script by Mike Rallo -->
+<!-- Version: Full Width. -->
+<!-- Bootstrap is needed -->
+<!-- jQuery Popup Overlay -->
+<script src="https://cdn.rawgit.com/vast-engineering/jquery-popup-overlay/1.7.13/jquery.popupoverlay.js"></script>
+<style>
+    /***MerchList Page Styles***/
+    /***Hide Unwanted Things***/
+    #wrapper, .LocationBar, #spacerdiv, #ShowButtons03, #ctl00_ctl00_Content_Content_pageSection, .merchSearch{
+    display: none;
+    }
+    /***Hide container until Merch is done displaying***/
+    #merchlistContainer{
+    display: none;
+    }
+    /***Hide Item Sku and Cart Icon***/
+    .itemSku, .cartIcon{
+    display: none;
+    }
+    /***MerchList Container***/
+    #merchlistContainerWrapper{
+    }
+    #merchlistContainerWrapper a{
+    text-decoration: none;
+    color: #00693c;
+    }
+    /***Bottom Merch Nav Paging Styles***/
+    #ctl00_ctl00_Content_Content_pnlPaging{
+    padding-top: 32px;
+    }
+    /***Errors Styles***/
+    #errorsContainer ul{
+    list-style: none;
+    }
+    .mAddedMsg{display: none;}
+    /***Item Containers Stuffs***/
+    .itemColumn{
+    padding: 5px !important;
+    }
+    .itemContainer{
+    padding-bottom: 0px;
+    padding-top: 5px;
+    }
+    .itemContainer, .itemImage, .itemName, .itemPrice, input[type="image"]{
+    margin: auto;
+    position: relative;
+    }
+    .itemName{
+    padding-top:10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+    .itemPrice{
+    padding-bottom: 10px;
+    }
+    .itemContainer *{
+    text-align: center;
+    font-family: 'LatoRegular';
+    }
+    .itemIsAddedContainer{
+    position: relative;
+    bottom:15px;
+    }
+    .previewButtonWrapper{
+    width:100%;
+    position: absolute;
+    top:70%;
+    color:white;
+    background-color:rgba(102,102,255,0.5);
+    display: none;
+    font-size: 1.8em;
+    padding-top: 4px;
+    cursor: pointer;
+    }
+    /***The PopupStuffs***/
+    .popUpItemContainer{
+    height:0px;
+    }
+    .popUpItem{
+    background-color:white;
+    padding:20px;
+    border-radius: 8px;
+    border:3px solid #000000;
+    max-width: 700px;
+    }
+    .popUpItem .superButton{margin-top:5px;margin-left: 5px;}
+    .popUpDescriptor{
+    font-weight: bold;
+    }
+    .closeStyles{
+    margin-top: -20px !important;
+    margin-right: -10px !important;
+    float: right;
+    font-size: 2.4em;
+    color: red;
+    margin-bottom: 10px;
+    cursor: pointer;
+    }
+    /***Assisting Classes for Alignments***/
+    .inlineMe, .inlineMe>*{
+    display: inline-block;
+    }
+    .inlineMe>*{
+    margin-right: 5px;
+    }
+    .centerMe, .centerMe>*{
+    text-align: center;
+    margin: auto;
+    }
+    #ctl00_ctl00_Content_Content_pnlPaging{
+    clear: both;
+    }
+    /***BreakPoints***/
+    /*1 Column - Realllllly Small*/
+    @media(max-width:299px){
+    .col-ms-12{
+    width: 100%;
+    }
+    .itemContainer{
+    width: 100%;
+    height: auto;
+    }
+    .itemImage{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    }
+    .itemContainer .itemImage input[type="image"]{
+    display: block;
+    max-width: 100%;
+    height: auto;
+    }
+    }
+    /*2 Columns - Extra Small*/
+    @media(min-width:300px) and (max-width:399px){
+    .itemContainer{
+    width: 100%;
+    height: 260px;
+    }
+    .itemImage{
+    width: 130px;
+    height:130px;
+    }
+    .itemContainer .itemImage input[type="image"]{
+    width: 130px;
+    height:auto;
+    }
+    }
+    /*2 Columns - Extra Small*/
+    @media(min-width:400px) and (max-width:560px){
+    .itemContainer{
+    width: 100%;
+    height: 260px;
+    }
+    .itemImage{
+    width: 180px;
+    height:180px;
+    }
+    .itemContainer .itemImage input[type="image"]{
+    width: 180px;
+    height:auto;
+    }
+    }
+    /*3 Columns - Extra Small*/
+    @media(min-width:561px) and (max-width:767px){
+    .col-ms-4{
+    width: 33.33333333%;
+    }
+    .itemContainer{
+    width: 100%;
+    height: 250px;
+    }
+    .itemImage{
+    width: 170px;
+    height:170px;
+    }
+    .itemContainer .itemImage input[type="image"]{
+    width: 170px;
+    height:auto;
+    }
+    }
+    /*3 Columns - Small*/
+    @media(min-width:768px) and (max-width:991px){
+    .itemContainer{
+    width: 100%;
+    height: 250px;
+    }
+    .itemImage{
+    width: 170px;
+    height:170px;
+    }
+    .itemContainer .itemImage input[type="image"]{
+    width: 170px;
+    height:auto;
+    }
+    }
+    /*3 Columns - Medium*/
+    @media(min-width:992px) and (max-width:1199px){
+    .itemContainer{
+    width: 100%;
+    height: 310px;
+    }
+    .itemImage{
+    width: 230px;
+    height:230px;
+    }
+    .itemContainer .itemImage input[type="image"]{
+    width: 230px;
+    height:auto;
+    }
+    }
+    /*5 Columns - Large*/
+    @media(min-width:1200px){
+    .col-ms-5{
+    width: 20%;
+    }
+    .itemContainer{
+    width: 100%;
+    height: 310px;
+    }
+    .itemImage{
+    width: 220px;
+    height:220px;
+    }
+    .itemContainer .itemImage input[type="image"]{
+    width: 220px;
+    height:auto;
+    }
+    }
+    /**********************************************************/
+    #merchlistContainer{padding: 0 !important;}
+    #merchlistHeader{font-size: 32px; text-align: center;}
+    @media(max-width:767px){
+    #merchlistContainer{width: 100% !important;}
+    }
+    .col-md-12{padding: 0 !important;}
+</style>
+<div class="container-fluid container-wrapper-content" id="merchlistContainerWrapper">
+<div class="container container-content" id="merchlistContainer">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="page-header-content" id="merchlistHeader">Merchandise</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<!-- Breadcrumbs -->
+<!--
+            <div class="container" id="breadcrumbss">
+                <ol class="breadcrumb">
+                    <li class="home">
+                        <a href="http://insitestore.mbsbooks.com/insiteprod4/Home.aspx" title="Home"><em class="fa fa-home fa-lg " aria-hidden="true"></em></a>
+                    </li>
+                    <li>
+                        <a href="#"></a>
+                        <span class="divider"> <a href="http://insitestore.mbsbooks.com/insiteprod4/merchandise.aspx">Merchandise</a></span>
+                    </li>
+                    <li class="page-header-content">
+                        Item
+                    </li>
+                </ol>
+            </div>
+-->
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div id="errorsContainer">&nbsp;</div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 col-content noPad" id="merchHolder">&nbsp;</div>
+</div>
+</div>
+<script>
+    
+    
+$(document).ready(function(){
+    
+    //Extra Responsiveness Help
+    $('.tblTop').css('width', '100%');
+    $('#tbl_left_cont_right').css('width', '100%');
+    $('.tblBottom').css('width', '100%');
+
+
+    //Check to See if we're on a Merch Page
+    if (window.location.href.indexOf("MerchList.aspx") != -1 || 
+        window.location.href.indexOf("merchlist.aspx") != -1 ||
+        window.location.href.indexOf("merch") != -1 ){
+
+        //If we're on a gross Loyalty Page, Run Away.
+        if (window.location.href.indexOf("Loyalty") != -1){return;} 
+        
+        // If the merchandise class name contains a period, we're done (It's Empty)//
+        var checkForDot = $('.LocationBar span[id$=lblTitle1]:contains(".")');
+        var checkLength = $('.LocationBar span[id$=lblTitle1]').html();
+        
+        if ($(checkForDot).length && checkLength.length <= 1) {
+            $(checkForDot).html($(checkForDot).html().replace(/\./, '<span style="display: none;">.</span>'));
+            $('span[id$=BreadcrumbCurrent]').html($('span[id$=BreadcrumbCurrent]').html().replace(/\./, '<span style="display: none;">.</span>'));
+            return;
+        }
+            
+        //Append the Main Container!
+        $('#content').parent().append($('#merchlistContainerWrapper'));
+        $('#errorsContainer').append($('.errors'));
+        
+        // Hide the existing merchandise display. //
+        $("table[id*=dgMerch]").hide();
+        //Clear ICM's Auto Spacing
+        $('#merchHolder').html(' ');
+    
+        //Get All of The Items
+        var merchItems = $('table[id*=hdrMerchandiseInfo]');
+        for(var workingItem = 0; workingItem < merchItems.length; workingItem++){
+            
+            //Get the current Item's Data!
+            var workingItemImage = $(merchItems[workingItem]).find($('input[id*=_Image]'));
+            var workingItemDesc = $(merchItems[workingItem]).find($('a[id*=MerchDesc]'));
+            var workingItemDescLong = $(merchItems[workingItem]).find($('span[id*=mer_desc_long]'));
+            var workingItemSKU = $(merchItems[workingItem]).find($('span[id*=_LblSKU]'));
+            var workingItemOption = $(merchItems[workingItem]).find($('select[id*=ddlMerchTypes]'));
+            var workingItemQuantity = $(merchItems[workingItem]).find($('input[id*=_quantity]'));
+            var workingItemAddButton = $(merchItems[workingItem]).find($('input[id*=checkCart]'));
+            
+
+            /**********************************/
+            /*********MAIN ITEM DISPLAY********/
+            /**********************************/
+            
+            /***ITEM CONTAINERS***/
+            $('#merchHolder').append($('<div class="col-ms-5 col-md-3 col-sm-4 col-ms-4 col-xs-6 col-ms-12 itemColumn" id="itemColumn'+workingItem+'"></div>'));
+            $('#itemColumn' + workingItem).append($('<div class="itemContainer"></div>'));
+            
+            //Append SubInfo to the Item's Container
+            $('#itemColumn' + workingItem + ' .itemContainer').append($('<div class="itemImage"></div>'));
+            $('#itemColumn' + workingItem + ' .itemContainer').append($('<div class="itemName"></div>'));
+            $('#itemColumn' + workingItem + ' .itemContainer').append($('<div class="itemPrice"></div>'));
+            $('#itemColumn' + workingItem + ' .itemContainer').append($('<div class="itemSku"></div>'));
+            
+            /***ITEM IMAGES***/
+            $(workingItemImage).attr('style',' ');
+            $(workingItemImage).attr('style',' ');
+            $('#itemColumn' + workingItem + ' .itemImage').append(workingItemImage);
+            
+            /***ITEM NAME/DESCRIPTION***/
+            $('#itemColumn'+workingItem+' .itemName').append($(workingItemDesc));
+
+            /***ITEM SKU***/
+            $('#itemColumn'+workingItem+' .itemSku').append($(workingItemSKU));
+            
+            /***ITEM PRICE***/
+            // Get and format the numeric value within the price ID //
+            var j = workingItem + 3;
+            var k = j;
+            if (k < 10) {
+                k = "0" + k;
+            }
+            // Set variable for base price //
+            var priceID = "dgMerch_ctl" + k + "_LCSP_Block_lblPriceValue";
+            // Set variables for sale prices //
+            var sale1ID = "dgMerch_ctl" + k + "_LCSP_Block_lbl1value";
+            var sale2ID = "dgMerch_ctl" + k + "_LCSP_Block_lbl2value";
+            var sale3ID = "dgMerch_ctl" + k + "_LCSP_Block_lbl3value";
+            var saleDIV = "dgMerch_ctl" + k + "_LCSP_Block_divSalePrice";
+            //Set variable for Web ID prices//
+            var webItemTypes = "dgMerch_ctl" + k + "_LCSP_Block_ddlMerchTypes";
+            // Check to see if the base price span //
+            // exists. If so, append it. If not then //
+            // create it and append as empty span. //
+            // This will be the only one available unless //
+            // the item is on a web sale. The only ways //
+            // this span does not exist is if the item is //
+            // on sale or a nonmerch code using price points. //
+            //Script was updated 12/01/11 to allow //
+            //display of Web ID price points. Will most likely//
+            //need reworked if any other price points exist. //
+            // Append the base price span if available. //
+            if ($('span[id*=' + priceID + ']').length > 0) {
+                //Add Item Price to Column Cell
+                $('span[id*=' + priceID + ']').appendTo($('#itemColumn'+workingItem+' .itemPrice'));
+            }
+            // Append sale price div if available. //
+            else if ($('div[id*=' + saleDIV + ']').length > 0) {
+                //Add Item Price to Column Cell
+                $('div[id*=' + saleDIV + ']').appendTo($('#itemColumn'+workingItem+' .itemPrice'));
+            }
+            // If web item with one type showing, check for price and append to cell. //
+            else if ($('select[id*=' + webItemTypes + '] option').length == 1) {
+                //Parse the Info We Need
+                var ddopts = $('select[id*=' + webItemTypes + ']').children().text().replace(/\$/g, '').replace(/,/g, '').match(/\$?[0-9]+(,[0-9]{3})*(\.[0-9]{2})+/g);
+                //Add Item Price to Column Cell
+                $('<span class="mPriceFields">$' + ddopts + '</span>').appendTo($('#itemColumn'+workingItem+' .itemPrice'));
+            }
+
+            // If web item with multiple types showing, check check for single or range price and append to cell. //
+            else if ($('select[id*=' + webItemTypes + '] option').length > 1) {
+                var ddopts = $('select[id*=' + webItemTypes + ']').children().text().replace(/\$/g, '').replace(/,/g, '').match(/\$?[0-9]+(,[0-9]{3})*(\.[0-9]{2})+/g);
+                Array.prototype.max = function () {
+                    return Math.max.apply(null, this);
+                };
+                Array.prototype.min = function () {
+                    return Math.min.apply(null, this);
+                };
+                var min = Math.min.apply(null, ddopts).toFixed(2),
+                    max = Math.max.apply(null, ddopts).toFixed(2);
+                if (min == max) {
+                    //Add Item Price to Column Cell
+                    $('<span class="mPriceFields">$' + min + '</span>').appendTo($('#itemColumn'+workingItem+' .itemPrice'));
+                } else {
+                    //Add Item Price to Column Cell
+                    $('<span class="mPriceFields">$' + min + ' - $' + max + '</span>').appendTo($('#itemColumn'+workingItem+' .itemPrice'));
+                }
+            }
+            // No regular, sale, or Web ID price points exist append a message configured at the top of this script//
+            else {
+                //Add Item Price to Column Cell
+                $('<span id="' + priceID + '"><strong>' + pricePointMsg + '</strong></span>').appendTo($('#itemColumn'+workingItem+' .itemPrice'));
+            }
+            
+            // If the item has been added to the cart, display a message
+            var isAdded = "dgMerch_ctl" + k + "_Imgcheck";
+            $('<div class="itemIsAddedContainer"><span class="mAddedMsg" style="color:green" id="addedMessage'+workingItem+'">Added to cart.</span></div>').appendTo("#itemColumn" + workingItem+">.itemContainer");
+            if ($('img[id*=' + isAdded + ']').length > 0) {
+                $('img[id*=' + isAdded + ']').appendTo($('#itemIsAdded' + workingItem));
+                $('#addedMessage' + workingItem).show();
+            }
+            
+            
+            /**********************************/
+            /*********POPUP ITEM DISPLAY*******/
+            /**********************************/
+            
+            /***ITEM POPUP CONTAINERS***/
+            //Create Skeleton
+            $('#itemColumn'+workingItem+' .itemImage').append($('<div class="previewButtonWrapper quickViewPopUpItem'+workingItem+'_open">Quick View</div>'));
+            $('#itemColumn' +workingItem).append($('<div id="quickViewPopUpItemContainer'+workingItem+'" class="popUpItemContainer"></div>'));
+            $('#quickViewPopUpItemContainer'+workingItem).append($('<div id="quickViewPopUpItem'+workingItem+'" class="popUpItem"></div>'));
+            //The 'X' Button of the PopUp
+            $('#quickViewPopUpItem' +workingItem).append($('<em class="fa fa-times quickViewPopUpItem'+workingItem+'_close closeStyles" aria-hidden="true"></em>'));
+
+
+            //Container for the Other Information of the Item 
+            $('#quickViewPopUpItem' +workingItem).append($('<div class="row" id="popUpItem'+workingItem+'Information"></div>'));
+            $('#popUpItem'+workingItem+'Information').append($('<div class="col-lg-5 col-md-5 col-sm-5 col-xs-12 centerMe" id="popUpItem'+workingItem+'ImageColumn"></div>'));
+            $('#popUpItem'+workingItem+'Information').append($('<div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" id="popUpItem'+workingItem+'InfoColumn"></div>'));
+            
+            //Container for Item Information 
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div style="text-align:center;font-size:1.4em;" id="popUpItem'+workingItem+'Name"></div>'));
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div id="popUpItem'+workingItem+'Description"></div>'));
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div id="popUpItem'+workingItem+'Sku"></div>'));
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div id="popUpItem'+workingItem+'Option"></div>'));
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div id="popUpItem'+workingItem+'Price"></div>'));
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div id="popUpItem'+workingItem+'Quantity" class="inlineMe"></div>'));
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div id="popUpItem'+workingItem+'AddButton" class="inlineMe"></div>'));
+            $('#popUpItem'+workingItem+'InfoColumn').append($('<div id="popUpItem'+workingItem+'Errors"></div>'));
+                        
+            //Used for The PopUp Styling/Initializing
+            $('#quickViewPopUpItem' + workingItem).popup({
+                pagecontainer: '#pagewrapper',
+                opacity:0.8,
+                transition: 'all 0.3s',
+                vertical:'center'
+            }); 
+            
+            /***ITEM POPUP IMAGES***/
+            //Get Data for PopUp
+            var rawAlt = $(workingItemImage).attr('alt');
+            var rawSrc = $(workingItemImage).attr('src');
+            rawSrc = rawSrc.replace('_th', '');
+            
+            //Add Image to PopUp
+            $('#popUpItem'+workingItem+'ImageColumn').html($('<img id="popUpItem'+workingItem+'_Image" src="'+rawSrc+'" alt="'+rawAlt+'" class="img-responsive">'));
+            $('#popUpItem'+workingItem+'_Image').click(function(){
+                var win = window.open(rawSrc, '_blank');
+                if (win) {
+                    //Browser has allowed it to be opened
+                    win.focus();
+                } else {
+                    //Browser has blocked it
+                    alert('Please allow popups for this website');
+                } 
+            });
+            
+            /***ITEM POPUP NAME/DESCRIPTION***/
+            //Get Data for PopUp
+            var rawLink = $(workingItemDesc).attr('href');
+            var rawTitle = $(workingItemDesc).html();
+            
+            //Add Name of Item to PopUp
+            $('#popUpItem'+workingItem+'Name').html($('<a href="'+rawLink+'">'+rawTitle+'</a>'));
+            
+            /***ITEM POPUP DESCRIPTION LONG***/
+            $('#popUpItem'+workingItem+'Description').html('<span class="popUpDescriptor">Description: </span>' + $(workingItemDescLong).html());
+            
+            
+            /***ITEM POPUP OPTIONS***/
+            $(workingItemOption).addClass('form-control');
+            $('#popUpItem'+workingItem+'Option').html($(workingItemOption));
+            $('<span class="popUpDescriptor">Item Option: </span>').insertBefore($(workingItemOption));
+
+            /***ITEM QUANTITY***/
+            $(workingItemQuantity).addClass('form-control');
+            $(workingItemQuantity).attr('style', 'width:40px;padding: 6px 10px;')
+            $('#popUpItem'+workingItem+'Quantity').html($(workingItemQuantity));
+            $('<span class="popUpDescriptor">Quantity: </span>').insertBefore($(workingItemQuantity));
+            
+            /***ITEM POPUP ADD BUTTON***/
+            $(workingItemAddButton).addClass('superButton');
+            $('#popUpItem'+workingItem+'AddButton').html($(workingItemAddButton));
+            
+            /***ITEM SKU***/
+            $('#popUpItem'+workingItem+'Sku').html('<span class="popUpDescriptor">Sku: </span>' + $(workingItemSKU).html());
+            
+            /***ITEM PRICE***/
+            if ($('span[id*=' + priceID + ']').length > 0) {
+                //Add Item Price to PopUp
+                $('#popUpItem'+workingItem+'Price').html('<span class="popUpDescriptor">Price: </span>' + $('span[id*=' + priceID + ']').html());
+            }
+            // Append sale price div if available. //
+            else if ($('div[id*=' + saleDIV + ']').length > 0) {
+                //Add Item Price to PopUp
+                $('#popUpItem'+workingItem+'Price').html('<span class="popUpDescriptor">Price: </span>' + $('div[id*=' + saleDIV + ']'));
+            }
+            // If web item with one type showing, check for price and append to cell. //
+            else if ($('select[id*=' + webItemTypes + '] option').length == 1) {
+                //Parse the Info We Need
+                var ddopts = $('select[id*=' + webItemTypes + ']').children().text().replace(/\$/g, '').replace(/,/g, '').match(/\$?[0-9]+(,[0-9]{3})*(\.[0-9]{2})+/g);
+                //Add Item Price to PopUp
+                $('#popUpItem'+workingItem+'Price').html('<span class="popUpDescriptor">Price: </span>' + $('<span class="mPriceFields">$' + ddopts + '</span>'));
+            }
+
+            // If web item with multiple types showing, check check for single or range price and append to cell. //
+            else if ($('select[id*=' + webItemTypes + '] option').length > 1) {
+                var ddopts = $('select[id*=' + webItemTypes + ']').children().text().replace(/\$/g, '').replace(/,/g, '').match(/\$?[0-9]+(,[0-9]{3})*(\.[0-9]{2})+/g);
+                Array.prototype.max = function () {
+                    return Math.max.apply(null, this);
+                };
+                Array.prototype.min = function () {
+                    return Math.min.apply(null, this);
+                };
+                var min = Math.min.apply(null, ddopts).toFixed(2),
+                    max = Math.max.apply(null, ddopts).toFixed(2);
+                if (min == max) {
+                    //Add Item Price to PopUp
+                    $('#popUpItem'+workingItem+'Price').html('<span class="popUpDescriptor">Sku: </span>' + $('<span class="mPriceFields">$' + min + '</span>'));
+
+                } else {
+                    //Add Item Price to PopUp
+                    $('#popUpItem'+workingItem+'Price').html('<span class="popUpDescriptor">Price: </span>' + $('<span class="mPriceFields">$' + min + ' - $' + max + '</span>'));
+                }
+            }
+            // No regular, sale, or Web ID price points exist append a message configured at the top of this script//
+            else {
+                //Add Item Price to PopUp
+                $('#popUpItem'+workingItem+'Price').html('<span class="popUpDescriptor">Price: </span>' + $('<span id="popUp' + priceID + '"><strong>' + pricePointMsg + '</strong></span>'));
+            }
+            
+        }
+    }
+
+
+    // Reformats price button adding image and centering
+    $('span[id$="lblPriceValue"]').each(function () {
+        $(this).html('  <img src="http://bookstore.riverland.edu/austin/SiteImages/7-SchoolImages/7-cart-black.png" style="vertical-align:middle;" alt="Buy" class="cartIcon" /> ' + $(this).html());
+        var link = $(this).prevAll("a").attr("href");
+        $(this).wrap('<a class="price-link" href="' + link + '" title="Buy Now">');
+        var width = Math.ceil(($(this).parent().parent().outerWidth() - $(this).outerWidth() - 10) / 2);
+
+        $(this).parent().css("left", width + "px");
+    });
+
+
+    //Replace thumbnail image with full size //
+    $('input[id*=_Image]').each(function (e) {
+        var src = $(this).attr('src');
+        $(this).attr('src', src.replace('_th', ''));
+    });
+
+
+    //Append Important Things
+    $('#ctl00_ctl00_Content_Content_pnlPaging').append($('#ctl00_ctl00_Content_Content_pnlPaging'))
+    $('.page-header-content').html($('#ctl00_ctl00_Content_Content_lblTitle1').html());
+    $('#merchlistContainer').append($('#ctl00_ctl00_Content_Content_pnlPaging'));
+
+    //Append Navigation Buttons
+    var buttonsContainer = $('<div id="navigationButtonsContainer"></div>')
+    $(buttonsContainer).append($('#ctl00_ctl00_Content_Content_dgMerch_ctl01_btnFirstPage'))
+    $(buttonsContainer).append($('#ctl00_ctl00_Content_Content_dgMerch_ctl01_btnPrevPage'))
+    $(buttonsContainer).append($('#ctl00_ctl00_Content_Content_dgMerch_ctl01_btnNextPage'))
+    $(buttonsContainer).append($('#ctl00_ctl00_Content_Content_dgMerch_ctl24_btnLastPage'))
+
+    if(buttonsContainer.children().length > 0){
+        $('#merchlistContainer').append($(buttonsContainer));
+    }
+
+    //Do Form Adjustment for PopUp Forms...
+    $('#aspnetForm').prepend($('body').children(':not(#aspnetForm)'));
+
+    //So no Quantity Buggies
+    $('input[id *= quantity]').attr('onkeypress','return event.keyCode != 13;')
+
+    //Preview Button Fade In/Out
+    $('.itemContainer').hover(function(){
+        $(this).find('.previewButtonWrapper').fadeToggle(0);    
+    });
+
+    //Hover Colors Controller!
+    $(".itemContainer").hover(function(){
+            $(this).css("background-color", "white");
+        }, function(){
+            $(this).css("background-color", "white");
+    });    
+    
+});  
+    
+</script>
+<script>
+    //This script Scales Images of different heights/widths to fit their container, keeping aspect ratio.
+    $(window).on("load", function() {
+        function resizeImages(){
+            var sizingImages = $('.itemImage > input[type="image"]');
+            console.log(sizingImages);
+            jQuery.each(sizingImages, function (i, val) { 
+                var top = ($(this).parent().height()-$(this).height())/1.5;
+                //Image is Tall, Adjust Height
+                if($(this).height() > $(this).width()){
+                    $(this).css('height','100%');
+                    $(this).css('width','auto');
+                }
+                //Image is Wide, Adjust Margin
+                else if(top < $(this).height() && $(this).height() < $(this).width()){
+                    $(this).css('margin-top', top + 'px');
+                }
+            });
+
+        }
+        resizeImages();
+        $(window).resize(resizeImages);
+        setTimeout(function(){$('#merchlistContainer').fadeIn();resizeImages(); }, 300);
+    });
+</script>
